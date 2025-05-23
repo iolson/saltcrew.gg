@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saltcrew - Player Expectations</title>
+    <!-- <link rel="icon" href="saltcrew.png" type="image/png"> -->
+    <style>
+        :root {
+            --bg-color: #1a1a1a;
+            --text-color: #e0e0e0;
+            --accent-color: #e50000; /* Red accent */
+            --card-bg: #2a2a2a;
+            --border-color: #444;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: var(--card-bg);
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 2px solid var(--accent-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo {
+            width: 500px; /* Adjust size as needed */
+            height: auto;
+            margin-bottom: 10px;
+            filter: brightness(0) invert(1); /* Makes the white logo visible on dark background */
+        }
+
+        h1 {
+            color: var(--accent-color);
+            margin: 0;
+            font-size: 2.5em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        main {
+            flex-grow: 1;
+            padding: 20px;
+            max-width: 900px;
+            margin: 20px auto;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+        }
+
+        section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background-color: #222; /* Slightly lighter than main background for section differentiation */
+        }
+
+        h2 {
+            color: var(--accent-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        h3 {
+            color: var(--text-color);
+            font-size: 1.5em;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin-bottom: 20px;
+            padding-left: 0;
+        }
+
+        ul li p {
+            margin: 5px 0;
+            padding-left: 15px; /* Indent text slightly */
+            border-left: 3px solid var(--accent-color);
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #333;
+            border-radius: 5px;
+            overflow: hidden; /* Ensures rounded corners apply to table content */
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 12px 15px;
+            text-align: left;
+            color: var(--text-color);
+        }
+
+        th {
+            background-color: var(--accent-color);
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #2a2a2a; /* Alternate row color */
+        }
+
+        tr:hover {
+            background-color: #444; /* Hover effect for rows */
+        }
+
+        footer {
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            text-align: center;
+            padding: 15px 0;
+            border-top: 2px solid var(--accent-color);
+            margin-top: 30px;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.8em;
+            }
+
+            h3 {
+                font-size: 1.3em;
+            }
+
+            main {
+                margin: 10px;
+                padding: 15px;
+            }
+
+            th, td {
+                padding: 8px 10px;
+                font-size: 0.9em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            h3 {
+                font-size: 1.2em;
+            }
+
+            section {
+                padding: 15px;
+            }
+
+            th, td {
+                padding: 6px 8px;
+                font-size: 0.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- Ensure the image path is correct relative to where you're viewing this.
+             For Canvas, this path should work if the image was uploaded. -->
+        <img src="images/saltcrew.png" alt="Saltcrew" class="logo" onerror="this.onerror=null; this.src='https://placehold.co/100x100/333/fff?text=Logo';">
+        <h1>Player Expectations</h1>
+    </header>
+
+    <main>
+        <section class="expectations">
+            <h2>Our Expectations</h2>
+            <ul>
+                <li>
+                    <h3>Scheduled Practices</h3>
+                    <p>Starters are expected to make all scheduled practices. We have team practice <strong>4 days a week</strong>: Sunday, Monday, and twice before default match days. Each session lasts approximately <strong>2-3 hours</strong>. Any excused absences must be posted in the team Discord by the day of practice.</p>
+                </li>
+                <li>
+                    <h3>Individual Playtime</h3>
+                    <p>Players need to be playing outside of practice and matches to maintain and improve individual skill. This should be through playing <strong>FACEIT, Premier, or Matchmaking</strong>. Late Night and 10-Mans do NOT count towards this requirement. A suggested guideline is at least <strong>3-5 competitive matches per week</strong>.</p>
+                </li>
+                <li>
+                    <h3>Performance & Self-Awareness</h3>
+                    <p>Players are expected to put in extra time if they're not performing. This refers to a noticeable drop in your HLTV Rating and overall underperformance in matches. This isn't something the team will track for you; you should be self-aware of your performance and take the initiative to improve. This extra time should focus on areas where you're struggling, including VOD reviews, Refrag, or other targeted training.</p>
+                </li>
+                <li>
+                    <h3>Accountability</h3>
+                    <p>If starters are not consistently meeting these requirements, benching could be an outcome. The duration of benching will be handled on a case-by-case basis, with the aim of helping the player improve and meet team standards.</p>
+                </li>
+                <li>
+                    <h3>Team Communication</h3>
+                    <p>Team communications need to be clear and concise. We expect clear voice comms in Discord during matches and practice. Be honest and proactive with feedback; the earlier things can change during a match, the better for the team.</p>
+                </li>
+                <li>
+                    <h3>Performance Tracking</h3>
+                    <p>We'll be using <a href="https://csstats.gg/" target="_blank">CSStats.gg</a> to track ESEA Match Performance, specifically focusing on the HLTV rating for individual insights.</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Player Name</th>
+                                <th>Season 53</th>
+                                <th>Season 54</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>FuzzyHat</td>
+                                <td><a href="https://csstats.gg/player/76561197971721260?modes=ESEA&groups=ESEA%20S53">Stats</a></td>
+                                <td><a href="https://csstats.gg/player/76561197971721260?modes=ESEA&groups=ESEA%20S54">Stats</a></td>
+                            </tr>
+                            <tr>
+                                <td>h0t_s0up</td>
+                                <td><a href="https://csstats.gg/player/76561197975195707?modes=ESEA&groups=ESEA%20S53">Stats</a></td>
+                                <td><a href="https://csstats.gg/player/76561197975195707?modes=ESEA&groups=ESEA%20S54">Stats</a></td>
+                            </tr>
+                            <tr>
+                                <td>GUNK</td>
+                                <td><a href="https://csstats.gg/player/76561198116416032?modes=ESEA&groups=ESEA%20S53">Stats</a></td>
+                                <td><a href="https://csstats.gg/player/76561198116416032?modes=ESEA&groups=ESEA%20S54">Stats</a></td>
+                            </tr>
+                            <tr>
+                                <td>kiwi</td>
+                                <td><a href="https://csstats.gg/player/76561198073450718?modes=ESEA&groups=ESEA%20S53">Stats</a></td>
+                                <td><a href="https://csstats.gg/player/76561198073450718?modes=ESEA&groups=ESEA%20S54">Stats</a></td>
+                            </tr>
+                            <tr>
+                                <td>AlexBG</td>
+                                <td><a href="https://csstats.gg/player/76561198049545387?modes=ESEA&groups=ESEA%20S53">Stats</a></td>
+                                <td><a href="https://csstats.gg/player/76561198049545387?modes=ESEA&groups=ESEA%20S54">Stats</a></td>
+                            </tr>
+                            <tr>
+                                <td>suff3r</td>
+                                <td><a href="https://csstats.gg/player/76561197987190748?modes=ESEA&groups=ESEA%20S53">Stats</a></td>
+                                <td><a href="https://csstats.gg/player/76561197987190748?modes=ESEA&groups=ESEA%20S54">Stats</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+            </ul>
+        </section>
+
+        <section class="team-goals">
+            <h2>Saltcrew Team Goals</h2>
+            <p>Our minimum goal for the current season is to reach <strong>Intermediate Playoffs</strong>. Following that, our ultimate goal is to progress to <strong>Main</strong> in the subsequent season.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Saltcrew CS2 Team. All rights reserved.</p>
+    </footer>
+</body>
+</html>
