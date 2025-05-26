@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dust2 T-Side Strategy Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Application Structure Plan: 
+        The SPA uses a top-level tabbed navigation to switch between major sections of the report: Overview, Principles, Roles, Default Setup, Transition, Executes (A & B), Advanced, and Conclusion. 
+        - 'Overview' provides the introduction from the report.
+        - 'Principles' covers core concepts like map control and utility.
+        - 'Roles' features interactive buttons for each player role (IGL, AWPer, Entry, Support, Lurker), revealing detailed descriptions, responsibilities, and playstyles upon clicking. This allows focused learning on individual roles.
+        - 'Default Setup' details initial positioning and essential early-round utility.
+        - 'Transition' explains the decision-making process from default to an execute.
+        - 'Executes' is further divided into 'A Site' and 'B Site' sub-tabs, each presenting specific strategies and utility tables for clarity.
+        - 'Advanced' offers further tips, and 'Conclusion' summarizes the report.
+        This thematic, tabbed structure was chosen for usability, breaking down the dense report into manageable, logically grouped sections. It allows users to either follow a linear learning path or jump directly to topics of interest, enhancing exploration and comprehension of the complex CS2 strategy.
+    -->
+    <!-- Visualization & Content Choices: 
+        - Report Info: Introduction -> Goal: Inform, Set Context -> Viz/Presentation: Text blocks -> Interaction: Navigation -> Justification: Standard introduction -> Library/Method: HTML/Tailwind.
+        - Report Info: Core Principles (Map Control, Utility Management, Adaptability, Patience, Information) -> Goal: Inform, Explain -> Viz/Presentation: Headings, paragraphs, bullet lists -> Interaction: Navigation -> Justification: Clear presentation of foundational concepts -> Library/Method: HTML/Tailwind.
+        - Report Info: Player Roles (IGL, AWPer, Entry Fragger, Support, Lurker) & Responsibilities Table -> Goal: Inform, Detail, Compare -> Viz/Presentation: Interactive buttons for each role, displaying detailed text content dynamically. A static HTML table for role summaries. -> Interaction: Click role button to show/hide details -> Justification: Allows focused study of each role and easy comparison via the table -> Library/Method: HTML/Tailwind, Vanilla JS.
+        - Report Info: Early Round Default Setup (Initial Positions, Essential Utility - Xbox Smoke, Mid Doors Smoke, CT Smoke Mid to B) -> Goal: Inform, Instruct -> Viz/Presentation: Text descriptions, bullet points for utility with purpose/method -> Interaction: Navigation -> Justification: Clear, actionable information for early round -> Library/Method: HTML/Tailwind.
+        - Report Info: Transitioning from Default to Tactical Execute (Decision-Making, Communication, Exploiting Weaknesses) -> Goal: Inform, Explain Process -> Viz/Presentation: Text, bullet points -> Interaction: Navigation -> Justification: Explains critical mid-round phase -> Library/Method: HTML/Tailwind.
+        - Report Info: Tactical Executes (A Site - Long/Short Split; B Site - Mid/Tunnels Split) including Key Utility tables -> Goal: Inform, Instruct, Detail -> Viz/Presentation: Sub-tabs for A/B executes. Text descriptions of strategies. Static HTML tables for utility lineups. -> Interaction: Sub-tabs to switch between A & B execute details -> Justification: Structured presentation of complex attack plans -> Library/Method: HTML/Tailwind, Vanilla JS.
+        - Report Info: Advanced Considerations (Adapting, Practice, Synergy, Individual Skill) -> Goal: Inform, Advise -> Viz/Presentation: Text, bullet points -> Interaction: Navigation -> Justification: Provides further improvement tips -> Library/Method: HTML/Tailwind.
+        - Report Info: Conclusion -> Goal: Summarize -> Viz/Presentation: Text -> Interaction: Navigation -> Justification: Standard closing -> Library/Method: HTML/Tailwind.
+        - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. No Chart.js or Plotly.js used as report content is primarily textual/descriptive.
+    -->
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .tab-button { transition: all 0.3s ease; }
+        .tab-button.active { border-color: #F97316; color: #F97316; background-color: #FFEDD5; }
+        .tab-button:hover:not(.active) { background-color: #FFF7ED; }
+        .content-section { display: none; }
+        .content-section.active { display: block; }
+        .role-button.active { background-color: #FB923C; color: white; }
+        .role-details { display: none; }
+        .role-details.active { display: block; }
+        .subtab-button.active { border-color: #EA580C; color: #EA580C; background-color: #FFF7ED;}
+        .subtab-button:hover:not(.active) { background-color: #FEF3C7; }
+        .subcontent-section { display: none; }
+        .subcontent-section.active { display: block; }
+        h1, h2, h3, h4 { color: #374151; }
+        p, li { color: #4B5563; line-height: 1.75; }
+        table { width: 100%; border-collapse: collapse; margin-top: 1rem; margin-bottom: 1rem; }
+        th, td { border: 1px solid #D1D5DB; padding: 0.75rem; text-align: left; }
+        th { background-color: #F3F4F6; color: #1F2937; font-weight: 600;}
+        .table-responsive { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+        .icon-bullet::before { content: '➔'; margin-right: 0.5em; color: #F97316; }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-amber-50 text-neutral-800">
+
+    <header class="bg-neutral-800 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row justify-between items-center py-4">
+                <h1 class="text-2xl sm:text-3xl font-bold text-amber-400 mb-2 sm:mb-0">Dust2 T-Side Strategy Guide</h1>
+                <nav class="flex flex-wrap justify-center gap-1 sm:gap-2" id="mainNav">
+                    <button class="tab-button active text-sm sm:text-base px-3 py-2 rounded-md font-medium border-b-2 border-transparent" data-tab="overview">Overview</button>
+                    <button class="tab-button text-sm sm:text-base px-3 py-2 rounded-md font-medium border-b-2 border-transparent" data-tab="principles">Principles</button>
+                    <button class="tab-button text-sm sm:text-base px-3 py-2 rounded-md font-medium border-b-2 border-transparent" data-tab="roles">Roles</button>
+                    <button class="tab-button text-sm sm:text-base px-3 py-2 rounded-md font-medium border-b-2 border-transparent" data-tab="defaultSetup">Default</button>
+                    <button class="tab-button text-sm sm:text-base px-3 py-2 rounded-md font-medium border-b-2 border-transparent" data-tab="transition">Transition</button>
+                    <button class="tab-button text-sm sm:text-base px-3 py-2 rounded-md font-medium border-b-2 border-transparent" data-tab="executes">Executes</button>
+                    <button class="tab-button text-sm sm:text-base px-3 py-2 rounded-md font-medium border-b-2 border-transparent" data-tab="advanced">Advanced</button>
+                    <button class="tab-button text-sm sm:text-base px-3 py-2 rounded-md font-medium border-b-2 border-transparent" data-tab="conclusion">Conclusion</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-4 sm:p-6 lg:p-8">
+        <section id="overview" class="content-section active bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-3xl font-bold mb-6 text-orange-600">Mastering Dust2: A Comprehensive Default Terrorist Strategy</h2>
+            <p class="mb-4">This guide explores a default Terrorist strategy for Dust2 in Counter-Strike 2. Dust2 is an iconic map, known for its balanced design that offers deep strategic possibilities. For Terrorists, Dust2 can provide inherent advantages due to CT difficulties in holding multiple chokepoints. This allows Ts to gather info and force favorable engagements. CS2's visual enhancements emphasize precise utility and team sync.</p>
+            <p class="mb-4">A strong default strategy is key in CS2. It helps establish map control, gather intel, and adapt to CT tendencies, minimizing early risks and setting up later tactical executes. Many players neglect learning utility, creating an opportunity for organized teams to improve win rates with strategic smokes and flashes. Controlling information and forcing CTs into reactive states is central to a successful T-side default.</p>
+        </section>
+
+        <section id="principles" class="content-section bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-3xl font-bold mb-6 text-orange-600">Core Principles of a Dust2 T-Side Default</h2>
+            <div class="mb-8">
+                <h3 class="text-2xl font-semibold mb-3 text-neutral-700">Understanding the Dust2 T-Side Landscape</h3>
+                <p class="mb-3">Effective T-side play on Dust2 focuses on controlling key areas: Mid, Tunnels, and Long. Mid control is crucial, offering routes to both sites and enabling quick rotations. The goal isn't just territory, but gathering intel on CT setups (Long, Short, Mid, B distribution) and rotation patterns to exploit weaknesses and disrupt CT coordination.</p>
+                <p class="mb-3"><strong class="text-neutral-700">Common CT Setups & How Defaults Counter Them:</strong> CTs often use a 3A (Long/Mid) - 1 Mid-to-B - 1B setup, or 1 Long, 1 Catwalk, 1 Mid, 2B. AWPs are common in Mid. T-defaults disrupt this by:</p>
+                <ul class="list-disc list-inside space-y-2 mb-3 pl-4">
+                    <li><span class="icon-bullet"></span>Blocking sightlines with utility (e.g., Xbox smoke, Mid Doors smoke) to deny info and create safe passage.</li>
+                    <li><span class="icon-bullet"></span>Pressuring multiple fronts (Long, Mid, Tunnels) to stretch CT defenses.</li>
+                    <li><span class="icon-bullet"></span>Isolating sites/chokepoints with grenades to limit CT responses.</li>
+                </ul>
+                <p>Initial utility denies CTs info, forcing them to react blindly, allowing Ts to gather precise intel and gain an advantage.</p>
+            </div>
+            
+            <div class="mb-8">
+                <h3 class="text-2xl font-semibold mb-3 text-neutral-700">Emphasis on Map Control, Utility Management, and Adaptability</h3>
+                <p class="mb-3">A successful default relies on:</p>
+                <ul class="list-disc list-inside space-y-2 mb-3 pl-4">
+                    <li><span class="icon-bullet"></span><strong>Map Control:</strong> Early control of Mid, Tunnels, and Long is key, establishing presence to deny CTs info.</li>
+                    <li><span class="icon-bullet"></span><strong>Utility Management:</strong> Judicious use of smokes, flashes, and Molotovs is vital. Teams need designated utility players and practiced lineups (one-way smokes, pop flashes, deep Molotovs).</li>
+                    <li><span class="icon-bullet"></span><strong>Adaptability:</strong> Teams must adjust strategies based on enemy movements and gathered intel. Continuous learning is crucial.</li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="text-2xl font-semibold mb-3 text-neutral-700">The Role of Patience and Information in Early Rounds</h3>
+                <p class="mb-3">Patience is vital; rushing every round is often counterproductive. Holding positions (e.g., Tunnels) helps understand CT play. The most valuable intel is the location of CT rotators, enabling numerically advantageous fights (e.g., 5v2 or 5v3). Effective communication is critical for coordination.</p>
+                <p>Patience, info gathering, and exploitation form a cycle. Observing CTs reveals tendencies. This informs exploitation: once a rotator is ID'd, Ts can hit the opposite site or split push, turning a 5v5 into a better fight. A default is a fluid process of probing, gathering intel, and exploiting weaknesses.</p>
+            </div>
+        </section>
+
+        <section id="roles" class="content-section bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-3xl font-bold mb-6 text-orange-600">Player Roles in the Default Strategy</h2>
+            <p class="mb-6">This section details the typical player roles in a CS2 team. While roles are dynamic and everyone needs to contribute frags and know utility, understanding these archetypes helps structure a team's approach. Click on a role to learn more about its specific responsibilities and playstyle within the default strategy.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6" id="roleButtons">
+                <button class="role-button bg-orange-400 hover:bg-orange-500 text-white font-semibold py-3 px-4 rounded-lg shadow" data-role="igl">In-Game Leader (IGL)</button>
+                <button class="role-button bg-orange-400 hover:bg-orange-500 text-white font-semibold py-3 px-4 rounded-lg shadow" data-role="awper">AWPer</button>
+                <button class="role-button bg-orange-400 hover:bg-orange-500 text-white font-semibold py-3 px-4 rounded-lg shadow" data-role="entry">Entry Fragger</button>
+                <button class="role-button bg-orange-400 hover:bg-orange-500 text-white font-semibold py-3 px-4 rounded-lg shadow" data-role="support">Support</button>
+                <button class="role-button bg-orange-400 hover:bg-orange-500 text-white font-semibold py-3 px-4 rounded-lg shadow" data-role="lurker">Lurker</button>
+            </div>
+
+            <div id="roleInfoContainer" class="mt-6 space-y-4">
+                <div id="igl-details" class="role-details bg-amber-100 p-4 rounded-lg border border-amber-300">
+                    <h3 class="text-xl font-semibold mb-2 text-orange-700">In-Game Leader (IGL)</h3>
+                    <p>The IGL is the team's brain, dictating strategies, making mid-round calls, and adapting plans. They manage economy, prioritize utility vs. firepower, and analyze enemy tendencies. During the default, the IGL sets initial positions, calls for early utility, and processes incoming info to decide whether to execute or continue probing. Clear communication from all players to the IGL is vital.</p>
+                </div>
+                <div id="awper-details" class="role-details bg-amber-100 p-4 rounded-lg border border-amber-300">
+                    <h3 class="text-xl font-semibold mb-2 text-orange-700">AWPer</h3>
+                    <p>The AWPer wields the AWP, exerting map control by holding long sightlines, stopping pushes, and punishing peeks. They can lock down areas or get aggressive picks. In a default, the AWPer often controls Mid or Long, denying CT aggression and seeking early picks. They must manage their economy carefully for the AWP.</p>
+                </div>
+                <div id="entry-details" class="role-details bg-amber-100 p-4 rounded-lg border border-amber-300">
+                    <h3 class="text-xl font-semibold mb-2 text-orange-700">Entry Fragger</h3>
+                    <p>The most aggressive player, the Entry Fragger initiates duels to open sites. They enter first, clear angles, and aim for the opening kill. If eliminated, their precise communication enables teammates to trade. They pave the way for the bomb plant. During the default, they probe CT positions, supported by utility, providing real-time intel. Requires quick reactions and aim.</p>
+                </div>
+                <div id="support-details" class="role-details bg-amber-100 p-4 rounded-lg border border-amber-300">
+                    <h3 class="text-xl font-semibold mb-2 text-orange-700">Support</h3>
+                    <p>The Support player enables teammates, especially the Entry, with utility and trading. They need comprehensive grenade knowledge (smokes, flashes, Molotovs). They follow the Entry to refrag. Often sacrifices better weapons for full utility. In the default, they deploy essential smokes (Xbox, Mid Doors, CT Mid to B) and prepare flashes for peeks and executes. Their utility and refrags are crucial for the Entry's success.</p>
+                </div>
+                <div id="lurker-details" class="role-details bg-amber-100 p-4 rounded-lg border border-amber-300">
+                    <h3 class="text-xl font-semibold mb-2 text-orange-700">Lurker</h3>
+                    <p>The Lurker operates away from the main push, seeking unexpected angles to catch enemies. They gather info on rotations and provide updates. Can flank or wait to punish rotations. During the default, they often hold passively (Tunnels, Long), observing CT reactions. Can cut off rotations or backstab if the team commits elsewhere. Requires game sense and timing. Their isolated position can create rotational traps for CTs.</p>
+                </div>
+            </div>
+            
+            <h3 class="text-2xl font-semibold mt-8 mb-4 text-neutral-700">Player Roles and Core Responsibilities Summary</h3>
+            <div class="table-responsive shadow rounded-lg">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Role</th>
+                            <th>Primary Responsibilities</th>
+                            <th>Typical Playstyle</th>
+                            <th>Key Utility/Weapon</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>In-Game Leader (IGL)</strong></td>
+                            <td>Dictate strategies, make mid-round calls, adapt to enemy tendencies, manage team economy, organize team.</td>
+                            <td>Strategic, calm under pressure, analytical, deep game knowledge.</td>
+                            <td>Full utility, Rifle</td>
+                        </tr>
+                        <tr>
+                            <td><strong>AWPer</strong></td>
+                            <td>Hold long sightlines, secure impactful picks, control map areas, manage AWP economy.</td>
+                            <td>Patient, precise, nerves of steel, high impact.</td>
+                            <td>AWP</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Entry Fragger</strong></td>
+                            <td>Initiate duels, enter sites first, clear angles, secure opening kills, communicate enemy positions, protect planter.</td>
+                            <td>Aggressive, confident aim, quick reaction time, strong map knowledge.</td>
+                            <td>Rifle, Flashbangs</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Support</strong></td>
+                            <td>Set up teammates with utility (smokes, flashes, Molotovs), refrag, defend planted bomb.</td>
+                            <td>Team-oriented, intelligent, utility-focused, strong refragging.</td>
+                            <td>Full utility (Smokes, Flashes, Molotovs), Rifle</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Lurker</strong></td>
+                            <td>Operate away from main push, flank enemies, gather rotation information, punish rotations.</td>
+                            <td>Independent, high game sense, impeccable timing, outsmarting enemies.</td>
+                            <td>Rifle, Flashbangs, Smokes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="defaultSetup" class="content-section bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-3xl font-bold mb-6 text-orange-600">Early Round Default Setup and Map Control</h2>
+            <p class="mb-6">This section outlines the initial player movements and essential utility for establishing early map control in a Dust2 Terrorist default. The goal is to secure key areas, deny information to the CTs, and gather intelligence for mid-round decisions.</p>
+            
+            <div class="mb-8">
+                <h3 class="text-2xl font-semibold mb-3 text-neutral-700">Initial Player Positions and Movements</h3>
+                <p class="mb-3">A typical T-side start involves distributing players: 1 scouting Mid, 1 controlling Tunnels, and 3 focusing on Long or preparing for a split. The main goal is early Mid control, as it allows attacks on both sites. Spawn positions can influence initial strategy (e.g., good Long spawn for Long take, good B spawn for B push). Tunnel players should establish presence, not necessarily push, to feel out CT play. Long is often an easier spot for Ts to control, aided by flashes.</p>
+            </div>
+
+            <div class="mb-8">
+                <h3 class="text-2xl font-semibold mb-3 text-neutral-700">Essential Default Utility</h3>
+                <p class="mb-4">Deploying specific utility is key for early map control and denying CT info:</p>
+                <ul class="space-y-4">
+                    <li>
+                        <strong class="text-lg text-orange-700">Xbox Smoke:</strong>
+                        <p>Arguably the most crucial smoke. Denies AWP line from Top Mid/Short, removing info from CTs at Bottom Mid. Allows safe Catwalk movement and protects Ts moving Long to Short from CT AWPers. <br/><em>Throw:</em> From corner next to T Spawn railing, aim at building tip ahead, jump-throw.</p>
+                    </li>
+                    <li>
+                        <strong class="text-lg text-orange-700">Mid Doors Smoke:</strong>
+                        <p>Prevents CTs controlling Mid, blocking AWP peeks and pushes through Mid Double Doors. Restricts CT info on T rotations. <br/><em>Throw:</em> Typically a simple left-click from a specific position.</p>
+                    </li>
+                    <li>
+                        <strong class="text-lg text-orange-700">CT Smoke (Mid to B):</strong>
+                        <p>Essential to prevent CTs rotating from A from seeing Mid. Critical for B pushes via Mid/Tunnels, protecting from rotating A players. <br/><em>Throw:</em> Generally easy; remember a dark spot, aim, left-click. Can also be thrown from in front of Xbox.</p>
+                    </li>
+                </ul>
+                <p class="mt-4">Mid control with utility like Xbox smoke allows pivots to A (Short) or B (Mid Doors/Window), forcing CTs to over-rotate or spread thin. This flexibility lets the IGL delay the final call. A default also pressures CT economy by forcing early utility use, impacting later rounds.</p>
+            </div>
+            
+            <div>
+                <h3 class="text-2xl font-semibold mb-3 text-neutral-700">Gaining and Interpreting Early Round Information</h3>
+                <p>Early utility is vital for map control and denying CT info. Effective communication with precise callouts (Xbox, Mid Doors, Upper Tunnels, Long, Short, Suicide) is crucial. Observing CT utility (early flashes/smokes) reveals their setup. Listening for footsteps/gunshots gives real-time CT positions. The IGL integrates this info to understand CT defense and make strategic decisions.</p>
+            </div>
+        </section>
+
+        <section id="transition" class="content-section bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-3xl font-bold mb-6 text-orange-600">Transitioning from Default to Tactical Execute</h2>
+            <p class="mb-6">The shift from a default to a tactical execute is a pivotal moment, entirely guided by the information gathered. This section explains the decision-making framework, communication protocols, and how to exploit identified CT weaknesses.</p>
+
+            <div class="mb-8">
+                <h3 class="text-2xl font-semibold mb-3 text-neutral-700">Decision-Making Framework Based on Gathered Information</h3>
+                <p class="mb-3">The IGL processes intel on enemy positions, utility usage, and rotation patterns to make a mid-round call. This could be:</p>
+                <ul class="list-disc list-inside space-y-2 mb-3 pl-4">
+                    <li><span class="icon-bullet"></span><strong>Commit to A:</strong> If CTs are weak on A or heavy on B/Mid.</li>
+                    <li><span class="icon-bullet"></span><strong>Commit to B:</strong> If CTs are weak on B or heavy on A/Mid.</li>
+                    <li><span class="icon-bullet"></span><strong>Mid-Split:</strong> If Mid control is strong and CTs are vulnerable to a split.</li>
+                    <li><span class="icon-bullet"></span><strong>Fake:</strong> Draw rotations to one site, then hit the other.</li>
+                </ul>
+                <p>Knowing when to rotate (fake or commit) can split defenses. This is the IGL's "dynamic decision point." The IGL's ability to read enemy economy/tendencies and exploit weaknesses depends on timely, accurate team info. Successful executes rely on the correct call based on this intel.</p>
+            </div>
+
+            <div class="mb-8">
+                <h3 class="text-2xl font-semibold mb-3 text-neutral-700">Communication Protocols for Seamless Mid-Round Transitions</h3>
+                <p class="mb-3">Clear, concise callouts are vital. Players must use mics and "talk as much as you can," giving continuous updates. Specific callouts (e.g., "enemy on Short," "enemy at Goose") are key for rapid info transfer. The IGL's calls must be unambiguous (target site, execute plan). Teammates must confirm understanding and readiness.</p>
+            </div>
+            
+            <div>
+                <h3 class="text-2xl font-semibold mb-3 text-neutral-700">Exploiting Identified Weaknesses in CT Setups</h3>
+                <p>Once CT weaknesses are found, exploit them precisely. If a rotator is located, hit the opposite site (e.g., 5v5 to 5v2/5v3). If CT utility is depleted in an area, commit there. Knowing common CT positions allows effective pre-aiming and utility. A Lurker can cut rotations or backstab, especially if the main team hits the opposite site, creating numerical advantages or disrupting retakes.</p>
+            </div>
+        </section>
+
+        <section id="executes" class="content-section bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-3xl font-bold mb-6 text-orange-600">Tactical Executes</h2>
+            <p class="mb-6">Once the decision to commit is made, the team executes a coordinated attack using specific utility and synchronized movements. This section details common executes for A and B sites. Use the tabs below to switch between A Site and B Site execute strategies.</p>
+            
+            <nav class="flex border-b border-neutral-300 mb-6" id="executeSubNav">
+                <button class="subtab-button active flex-1 sm:flex-none py-3 px-2 sm:px-6 block hover:text-orange-700 focus:outline-none text-neutral-600 font-medium border-b-2 border-transparent" data-subtab="executeA">A Site Execute</button>
+                <button class="subtab-button flex-1 sm:flex-none py-3 px-2 sm:px-6 block hover:text-orange-700 focus:outline-none text-neutral-600 font-medium border-b-2 border-transparent" data-subtab="executeB">B Site Execute</button>
+            </nav>
+
+            <div id="executeA" class="subcontent-section active">
+                <h3 class="text-2xl font-semibold mb-4 text-neutral-700">A Site Execute (Long/Short Split)</h3>
+                <p class="mb-4">An A site execute often uses a split push through Long and Catwalk (Short), requiring precise timing. Typically 1-2 players push Long, while the rest push Short or Mid to Catwalk.</p>
+                <h4 class="text-xl font-semibold mb-3 text-neutral-700">Key Utility for A Site Execute:</h4>
+                <p class="mb-4">Effective A executes use a stack of utility to cover multiple angles, denying CTs vision and safe positions.</p>
+                <div class="table-responsive shadow rounded-lg mb-6">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Utility Name</th>
+                                <th>Purpose</th>
+                                <th>General Throwing Method</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>A Crossing Smoke</strong></td>
+                                <td>Cover Ts from CT Spawn when pushing Long, allowing safe site cross. Prevents CTs peeking Ts crossing Long to A.</td>
+                                <td>Stand at boxes behind car outside Long Doors, aim above tree leaves (diag. right), jump-throw.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>A Short Smoke</strong></td>
+                                <td>Cover Ts crossing Short to A Site, clear CTs behind A Site Boxes. Prevents CTs seeing Short from Long.</td>
+                                <td>Stand at corner in front of boxes on Catwalk, aim towards ledge, simple throw. (Can follow with Molotov for Goose).</td>
+                            </tr>
+                            <tr>
+                                <td><strong>CT Spawn Smoke (A Site)</strong></td>
+                                <td>Assert control closer to CT Spawn, enable good positioning (e.g., atop site boxes). Complements A Crossing Smoke by blocking vision for CTs rotating from B via CT spawn.</td>
+                                <td>Align with bricks outside Long Doors, aim above antenna/window frame intersection, standard throw.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Long Take Flashes</strong></td>
+                                <td>Blind opposing players holding Long, facilitate free kills. Blinds defenders at Car and A-Site.</td>
+                                <td>Line up center of wall, find top of white arrow, move crosshair to top of wall, jump-throw.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <h4 class="text-xl font-semibold mb-3 text-neutral-700">Post-Plant Positions and Bomb Holds:</h4>
+                <p>After planting, transition to defense. "Not hunt once that bomb's down," ensure "at least two people are holding each entry way." Establish defensive positions, use cover, and set up crossfires.</p>
+            </div>
+
+            <div id="executeB" class="subcontent-section">
+                <h3 class="text-2xl font-semibold mb-4 text-neutral-700">B Site Execute (Mid/Tunnels Split)</h3>
+                <p class="mb-4">A common B take is a split push via Mid and Tunnels. Mid players (1-2) push Mid Doors/Window, while others (2-3) push Upper Tunnels. "Take Tunnels control first" before a full B rush.</p>
+                <h4 class="text-xl font-semibold mb-3 text-neutral-700">Key Utility for B Site Execute:</h4>
+                <p class="mb-4">A successful B execute dismantles CT info gathering and reinforcement. CT Smoke (Mid to B) + B Window/Door smokes funnel CT info, forcing predictable or cut-off retakes.</p>
+                 <div class="table-responsive shadow rounded-lg mb-6">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Utility Name</th>
+                                <th>Purpose</th>
+                                <th>General Throwing Method</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>B Door Smoke</strong></td>
+                                <td>Prevent CTs peeking B Double Doors, facilitate T cross to B Site. Blocks vision for Mid support players.</td>
+                                <td>Line up left side of wooden crate in Upper Tunnels, specific crosshair placement, left-click. Or, middle of box in Upper Tunnels, aim slightly above wooden plank/wall meet.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>B Window Smoke</strong></td>
+                                <td>Prevent CTs peeking B Site from window. Stops Mid rotations peeking B.</td>
+                                <td>Position on blue tile before wooden plank in B Tunnels, aim slightly left of window's dome, jump-throw. (May need practice).</td>
+                            </tr>
+                            <tr>
+                                <td><strong>CT Spawn Smoke (Mid)</strong></td>
+                                <td>Prevent CTs rotating from A from seeing Mid. Protects B push via Mid/Tunnels.</td>
+                                <td>Stand in front of Xbox, place crosshair on specific wall spot, standard throw.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>B Site Flashes</strong></td>
+                                <td>Blind enemies on site to facilitate entry.</td>
+                                <td>Alongside box in Upper Tunnels (not blinding teammates); or along position to blind entire site.</td>
+                            </tr>
+                             <tr>
+                                <td><strong>B Site Molotovs</strong></td>
+                                <td>Clear common hiding spots, force enemies out.</td>
+                                <td>Molly behind the big box on B site.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <h4 class="text-xl font-semibold mb-3 text-neutral-700">Post-Plant Positions and Bomb Holds:</h4>
+                <p>Similar to A, establish strong defensive positions, secure entries, maintain crossfires. Entry Fragger protects planter; Support players vital for defending via refrags.</p>
+            </div>
+        </section>
+
+        <section id="advanced" class="content-section bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-3xl font-bold mb-6 text-orange-600">Advanced Considerations and Tips</h2>
+            <p class="mb-6">Beyond basic executes, a deeper understanding of game dynamics, continuous practice, and strong team synergy are crucial for consistent success. This section covers adapting to the enemy, and the importance of practice and teamwork.</p>
+            
+            <div class="mb-8">
+                <h3 class="text-2xl font-semibold mb-3 text-neutral-700">Adapting to Enemy Economy and Tendencies</h3>
+                <p class="mb-3">The IGL must track enemy economy for force buys, saves, or full buys. Adjust strategies based on enemy playstyle patterns. E.g., faster B rushes on enemy eco rounds. If opponents use AWPs frequently, play to maximize cover and force AWPer exposure.</p>
+            </div>
+            
+            <div>
+                <h3 class="text-2xl font-semibold mb-3 text-neutral-700">Importance of Practice and Team Synergy</h3>
+                <p class="mb-4">Consistent practice and synergy are key:</p>
+                <ul class="list-disc list-inside space-y-3 pl-4">
+                    <li><span class="icon-bullet"></span><strong>Practice Grenade Throws:</strong> Accurate utility dramatically improves win rates. Practice with `host_timescale` and jump-throw binds. Use resources like Refrag.gg NADR servers.</li>
+                    <li><span class="icon-bullet"></span><strong>Communication:</strong> Clear, concise callouts are vital for coordination.</li>
+                    <li><span class="icon-bullet"></span><strong>Team Synergy:</strong> Cohesion via communication and practice ensures smooth strategy execution. Stick together; avoid solo plays. Counter-fragging is crucial.</li>
+                    <li><span class="icon-bullet"></span><strong>Individual Skill:</strong> Precise crosshair placement always. Understand common CT positions. Learn pop flashes. Meticulously check corners when entering. Good reactive aiming is needed as Ts are often aggressors.</li>
+                </ul>
+                <p class="mt-4">Consistent practice leads to reliable execution, freeing mental bandwidth to observe enemy tendencies and adapt. Proficiency enhances strategic thinking and real-time adaptation.</p>
+            </div>
+        </section>
+
+        <section id="conclusion" class="content-section bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-3xl font-bold mb-6 text-orange-600">Conclusion</h2>
+            <p class="mb-4">Success on Dust2 as Terrorists in CS2 requires a multifaceted strategy. Proactive map control (especially Mid) is key for info and pacing. Each player role is interdependent and vital for map coverage and exploiting weaknesses. Utility is a primary tool for denying info, isolating sites, and creating advantages.</p>
+            <p class="mb-4">The default-to-execute transition is critical, driven by the IGL's interpretation of info and clear communication. A robust default minimizes risk and maximizes info gathering, setting up decisive mid-round calls. Flexibility and adaptability are paramount. Mastering Dust2 demands individual skill, deep strategic understanding, and seamless team coordination. Leveraging spawns, optimizing grenades, and clear communication significantly boost victory chances.</p>
+        </section>
+    </main>
+
+    <footer class="text-center py-8 text-neutral-600 bg-amber-100 border-t border-amber-200">
+        <p>&copy; 2024 Dust2 T-Side Strategy Guide. Information based on community knowledge.</p>
+    </footer>
+
+    <script>
+        const mainNavButtons = document.querySelectorAll('#mainNav .tab-button');
+        const contentSections = document.querySelectorAll('.content-section');
+        const roleButtons = document.querySelectorAll('#roleButtons .role-button');
+        const roleDetailsDivs = document.querySelectorAll('.role-details');
+        const executeSubNavButtons = document.querySelectorAll('#executeSubNav .subtab-button');
+        const subContentSections = document.querySelectorAll('.subcontent-section');
+
+        function setActiveTab(buttons, sections, activeData) {
+            buttons.forEach(button => {
+                button.classList.toggle('active', button.dataset.tab === activeData || button.dataset.subtab === activeData);
+            });
+            sections.forEach(section => {
+                section.classList.toggle('active', section.id === activeData);
+            });
+        }
+        
+        mainNavButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const tabId = button.dataset.tab;
+                setActiveTab(mainNavButtons, contentSections, tabId);
+                if (tabId === 'roles') {
+                    const firstRoleButton = roleButtons[0];
+                    if (firstRoleButton) {
+                       handleRoleButtonClick(firstRoleButton); 
+                    }
+                }
+                 if (tabId === 'executes') {
+                    const firstExecuteSubTab = executeSubNavButtons[0];
+                    if (firstExecuteSubTab) {
+                        setActiveTab(executeSubNavButtons, subContentSections, firstExecuteSubTab.dataset.subtab);
+                    }
+                }
+            });
+        });
+
+        function handleRoleButtonClick(clickedButton) {
+            const roleId = clickedButton.dataset.role + '-details';
+            roleButtons.forEach(btn => btn.classList.remove('active'));
+            clickedButton.classList.add('active');
+            roleDetailsDivs.forEach(div => {
+                div.classList.toggle('active', div.id === roleId);
+            });
+        }
+
+        roleButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                handleRoleButtonClick(button);
+            });
+        });
+        
+        executeSubNavButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                setActiveTab(executeSubNavButtons, subContentSections, button.dataset.subtab);
+            });
+        });
+
+        if (roleButtons.length > 0) {
+            handleRoleButtonClick(roleButtons[0]);
+        }
+        if (executeSubNavButtons.length > 0) {
+             setActiveTab(executeSubNavButtons, subContentSections, executeSubNavButtons[0].dataset.subtab);
+        }
+
+    </script>
+</body>
+</html>
