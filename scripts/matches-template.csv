@@ -1,0 +1,4 @@
+id,date,tournament,opponent,format,saltcrewScore,opponentScore,map,result,hasRecap
+s48-001,2023-01-15,ESEA Season 48,Team Alpha,bo1,16,12,de_dust2,win,false
+s48-002,2023-01-18,ESEA Season 48,Beta Squad,bo1,13,16,de_mirage,loss,false
+s48-003,2023-01-22,ESEA Season 48,Gamma Gaming,bo1,16,9,de_inferno,win,false

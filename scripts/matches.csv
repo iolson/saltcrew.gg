@@ -1,0 +1,136 @@
+id,date,tournament,opponent,format,saltcrewScore,opponentScore,map,result,hasRecap
+s48-01,2024-01-15,ESEA Season 48 - Open,SVN,bo1,3,13,de_anubis,loss,FALSE
+s48-02,2024-01-17,ESEA Season 48 - Open,TheBoys,bo1,15,19,de_mirage,loss,FALSE
+s48-03,2024-01-23,ESEA Season 48 - Open,HOQEO,bo1,13,8,de_anubis,win,FALSE
+s48-04,2024-01-24,ESEA Season 48 - Open,Washed Whales,bo1,13,8,de_vertigo,win,FALSE
+s48-05,2024-01-29,ESEA Season 48 - Open,SeeingRedGaming,bo1,13,11,de_anubis,win,FALSE
+s48-06,2024-01-31,ESEA Season 48 - Open,Mishaps,bo1,13,9,de_anubis,win,FALSE
+s48-07,2024-02-05,ESEA Season 48 - Open,Rat Pack,bo1,13,4,de_vertigo,win,FALSE
+s48-08,2024-02-07,ESEA Season 48 - Open,Zyn Jong Un,bo1,13,11,de_vertigo,win,FALSE
+s48-09,2024-02-12,ESEA Season 48 - Open,square nation,bo1,5,13,de_anubis,loss,FALSE
+s48-10,2024-02-17,ESEA Season 48 - Open,Team Upsetti,bo1,13,10,de_vertigo,loss,FALSE
+s48-11,2024-02-19,ESEA Season 48 - Open,lofi hip hop radio,bo1,10,13,de_anubis,loss,FALSE
+s48-12,2024-02-21,ESEA Season 48 - Open,ABG Hunters,bo1,19,15,de_mirage,win,FALSE
+s48-13,2024-02-26,ESEA Season 48 - Open,raisedbypixels,bo1,1,0,FFW,win,FALSE
+s48-14,2024-02-28,ESEA Season 48 - Open,FAWSET,bo1,13,5,de_anubis,loss,FALSE
+s48-15,2024-03-06,ESEA Season 48 Playoffs - Open,Washed Whales,bo3,,,,win,FALSE
+s48-16,2024-03-08,ESEA Season 48 Playoffs - Open,FASTMEN,bo3,,,,loss,FALSE
+s49-01,2024-04-08,ESEA Season 49 - Open,Ecliptic,bo1,1,0,FFW,win,FALSE
+s49-02,2024-04-10,ESEA Season 49 - Open,Low LvL Dudes,bo1,13,2,de_anubis,win,FALSE
+s49-03,2024-04-15,ESEA Season 49 - Open,Cottagers,bo1,1,0,FFW,win,FALSE
+s49-04,2024-04-17,ESEA Season 49 - Open,Raging Rhinos,bo1,13,5,de_vertigo,win,FALSE
+s49-05,2024-04-22,ESEA Season 49 - Open,Trash Compactor,bo1,13,4,de_anubis,win,FALSE
+s49-06,2024-04-24,ESEA Season 49 - Open,eL YeeT,bo1,13,9,de_anubis,win,FALSE
+s49-07,2024-04-29,ESEA Season 49 - Open,Boiler Boys,bo1,6,13,de_anubis,loss,FALSE
+s49-08,2024-05-01,ESEA Season 49 - Open,GOBLINS,bo1,14,16,de_ancient,loss,FALSE
+s49-09,2024-05-06,ESEA Season 49 - Open,Bowel Bandits,bo1,11,13,de_anubis,loss,FALSE
+s49-10,2024-05-08,ESEA Season 49 - Open,Yogaball Frags,bo1,11,13,de_ancient,loss,FALSE
+s49-11,2024-05-13,ESEA Season 49 - Open,Yapping Yetis,bo1,13,8,de_ancient,win,FALSE
+s49-12,2024-05-15,ESEA Season 49 - Open,REDACTED,bo1,13,5,de_anubis,win,FALSE
+s49-13,2024-05-20,ESEA Season 49 - Open,Drunk Old Fools,bo1,13,1,de_vertigo,win,FALSE
+s49-14,2024-05-22,ESEA Season 49 - Open,Gamma Gaming,bo1,1,0,FFW,win,FALSE
+s49-15,2024-05-28,ESEA Season 49 Playoffs - Open,BYE,bo3,1,0,FFW,win,FALSE
+s49-16,2024-06-04,ESEA Season 49 Playoffs - Open,AuGaming,bo3,,,,win,FALSE
+s49-17,2024-06-05,ESEA Season 49 Playoffs - Open,OUTER SAVAGE,bo3,,,,loss,FALSE
+s50-01,2024-07-17,ESEA Season 50 - Intermediate,Nori Aim,bo1,13,3,de_nuke,win,FALSE
+s50-02,2024-07-18,ESEA Season 50 - Intermediate,Juan Arm,bo1,9,13,de_anubis,loss,FALSE
+s50-03,2024-07-23,ESEA Season 50 - Intermediate,Conscious Gaming,bo1,9,13,de_anubis,loss,FALSE
+s50-04,2024-07-25,ESEA Season 50 - Intermediate,Strafe Cru,bo1,14,16,de_anubis,loss,FALSE
+s50-05,2024-07-30,ESEA Season 50 - Intermediate,TEMPR,bo1,13,7,de_nuke,win,FALSE
+s50-06,2024-08-01,ESEA Season 50 - Intermediate,7 Heaven,bo1,13,4,de_ancient,win,FALSE
+s50-07,2024-08-06,ESEA Season 50 - Intermediate,brain busters,bo1,1,0,FFW,win,FALSE
+s50-08,2024-08-12,ESEA Season 50 - Intermediate,Zen Garden,bo1,13,4,de_anubis,win,FALSE
+s50-09,2024-08-13,ESEA Season 50 - Intermediate,Nut Academy,bo1,13,3,de_ancient,win,FALSE
+s50-10,2024-08-15,ESEA Season 50 - Intermediate,Hentai Heros,bo1,13,3,de_anubis,win,FALSE
+s50-11,2024-08-20,ESEA Season 50 - Intermediate,snipeNwipe,bo1,13,4,de_ancient,win,FALSE
+s50-12,2024-08-22,ESEA Season 50 - Intermediate,Gator Pit,bo1,13,7,de_vertigo,win,FALSE
+s50-13,2024-08-27,ESEA Season 50 - Intermediate,Ativa,bo1,6,13,de_anubis,loss,FALSE
+s50-14,2024-08-29,ESEA Season 50 - Intermediate,O Block Esports,bo1,16,13,de_nuke,win,FALSE
+s50-15,2024-09-03,ESEA Season 50 Playoffs - Intermediate,Grandpa Berets,bo3,,,,win,FALSE
+s50-16,2024-09-05,ESEA Season 50 Playoffs - Intermediate,17 MPH,bo3,,,,win,FALSE
+s50-17,2024-09-08,ESEA Season 50 Playoffs - Intermediate,Imperium,bo3,,,,loss,FALSE
+s50-18,2024-09-11,ESEA Season 50 Playoffs - Intermediate,MadaNASCAR,bo3,,,,win,FALSE
+s50-19,2024-09-13,ESEA Season 50 Playoffs - Intermediate,ForgetAbItCUH,bo3,,,,loss,FALSE
+s51-01,2024-10-08,ESEA Season 51 - Main,Peekers Adv,bo1,5,13,de_nuke,loss,FALSE
+s51-02,2024-10-10,ESEA Season 51 - Main,big water,bo1,11,13,de_ancient,loss,FALSE
+s51-03,2024-10-15,ESEA Season 51 - Main,YIPPEEE,bo1,9,13,de_nuke,loss,FALSE
+s51-04,2024-10-17,ESEA Season 51 - Main,Sleepless_Gaming,bo1,4,13,de_nuke,loss,FALSE
+s51-05,2024-10-22,ESEA Season 51 - Main,OnlyToms,bo1,13,8,de_ancient,win,FALSE
+s51-06,2024-10-24,ESEA Season 51 - Main,small rejuice,bo1,13,5,de_anubis,win,FALSE
+s51-07,2024-10-29,ESEA Season 51 - Main,PugstarMagnates,bo1,16,19,de_anubis,loss,FALSE
+s51-08,2024-11-03,ESEA Season 51 - Main,CHAOZ Gold,bo1,13,6,de_anubis,win,FALSE
+s51-09,2024-11-07,ESEA Season 51 - Main,Team Fantasy,bo1,10,13,de_anubis,loss,FALSE
+s51-10,2024-11-10,ESEA Season 51 - Main,Stoic Inter,bo1,8,13,de_anubis,loss,FALSE
+s51-11,2024-11-12,ESEA Season 51 - Main,DingTone,bo1,7,13,de_anubis,loss,FALSE
+s51-12,2024-11-14,ESEA Season 51 - Main,AH Nightwatch,bo1,15,19,de_ancient,loss,FALSE
+s51-13,2024-11-19,ESEA Season 51 - Main,AWPNT,bo1,6,13,de_nuke,loss,FALSE
+s51-14,2024-11-21,ESEA Season 51 - Main,BLOONS,bo1,13,6,de_ancient,win,FALSE
+s52-01,2025-01-16,ESEA Season 52 - Intermediate,Boop Boop Gang,bo1,9,13,de_nuke,loss,FALSE
+s52-02,2025-01-17,ESEA Season 52 - Intermediate,Unjustified_fe,bo1,13,4,de_ancient,win,FALSE
+s52-03,2025-01-21,ESEA Season 52 - Intermediate,Lemon Party,bo1,13,6,de_nuke,win,FALSE
+s52-04,2025-01-23,ESEA Season 52 - Intermediate,Death By Gamers,bo1,10,13,de_ancient,loss,FALSE
+s52-05,2025-01-29,ESEA Season 52 - Intermediate,fX,bo1,13,4,de_anubis,win,FALSE
+s52-06,2025-01-30,ESEA Season 52 - Intermediate,Nameless Kings,bo1,11,13,de_anubis,loss,FALSE
+s52-07,2025-02-04,ESEA Season 52 - Intermediate,Priority Pluto,bo1,13,8,de_ancient,win,FALSE
+s52-08,2025-02-06,ESEA Season 52 - Intermediate,evarus,bo1,13,5,de_nuke,win,FALSE
+s52-09,2025-02-11,ESEA Season 52 - Intermediate,Gator Pit,bo1,11,13,de_nuke,loss,FALSE
+s52-10,2025-02-13,ESEA Season 52 - Intermediate,Hot Commers,bo1,9,13,de_ancient,loss,FALSE
+s52-11,2025-02-18,ESEA Season 52 - Intermediate,TRUMP BOYZ,bo1,13,6,de_nuke,win,FALSE
+s52-12,2025-02-20,ESEA Season 52 - Intermediate,Volatile,bo1,10,13,de_anubis,loss,FALSE
+s52-13,2025-02-25,ESEA Season 52 - Intermediate,Getting Good v2,bo1,13,10,de_nuke,win,FALSE
+s52-14,2025-02-27,ESEA Season 52 - Intermediate,Cynicals,bo1,7,13,de_ancient,loss,FALSE
+s52-15,2025-03-04,ESEA Season 52 Playoffs - Intermediate,PredatorXGaming,bo3,,,,win,FALSE
+s52-16,2025-03-06,ESEA Season 52 Playoffs - Intermediate,gooshedd,bo3,,,,loss,FALSE
+s52-17,2025-03-08,ESEA Season 52 Playoffs - Intermediate,WC-Shotgunners,bo3,,,,loss,FALSE
+s53-01,2025-04-08,ESEA Season 53 - Intermediate,Piss,bo1,13,5,de_train,win,FALSE
+s53-02,2025-04-10,ESEA Season 53 - Intermediate,Omen 1800 Gang,bo1,7,13,de_ancient,loss,FALSE
+s53-03,2025-04-15,ESEA Season 53 - Intermediate,TuranKZKG,bo1,8,13,de_anubis,loss,FALSE
+s53-04,2025-04-17,ESEA Season 53 - Intermediate,PerfectSymphony,bo1,9,13,de_ancient,loss,FALSE
+s53-05,2025-04-22,ESEA Season 53 - Intermediate,Getting Good v3,bo1,3,13,de_nuke,loss,FALSE
+s53-06,2025-04-23,ESEA Season 53 - Intermediate,The Goon Lagoon,bo1,12,16,de_train,loss,FALSE
+s53-07,2025-04-19,ESEA Season 53 - Intermediate,AML,bo1,13,4,de_train,win,FALSE
+s53-08,2025-05-01,ESEA Season 53 - Intermediate,Mirrored,bo1,13,6,de_anubis,win,FALSE
+s53-09,2025-05-06,ESEA Season 53 - Intermediate,Mighty Kats,bo1,13,6,de_ancient,win,FALSE
+s53-10,2025-05-08,ESEA Season 53 - Intermediate,Wed Wings,bo1,14,16,de_ancient,loss,FALSE
+s53-11,2025-05-13,ESEA Season 53 - Intermediate,Viral EClub,bo1,13,8,de_nuke,win,FALSE
+s53-12,2025-05-15,ESEA Season 53 - Intermediate,Medellin Cartel,bo1,13,6,de_nuke,loss,FALSE
+s53-13,2025-05-20,ESEA Season 53 - Intermediate,Mangione Family,bo1,13,5,de_ancient,win,FALSE
+s53-14,2025-05-22,ESEA Season 53 - Intermediate,Symbiose,bo1,9,13,de_inferno,loss,FALSE
+s53-15,2025-05-27,ESEA Season 53 Playoffs - Intermediate,PH Enthusiasts,bo3,,,,win,FALSE
+s53-16,2025-05-29,ESEA Season 53 Playoffs - Intermediate,Omen 1800 Gang,bo3,,,,loss,FALSE
+s53-17,2025-05-31,ESEA Season 53 Playoffs - Intermediate,Dapper North,bo3,,,,loss,FALSE
+s54-01,2025-07-15,ESEA Season 54 - Intermediate,FRAGDEMONS,bo1,9,13,de_ancient,loss,FALSE
+s54-02,2025-07-17,ESEA Season 54 - Intermediate,ASK,bo1,13,8,de_anubis,win,FALSE
+s54-03,2025-07-22,ESEA Season 54 - Intermediate,WasteManagement,bo1,1,0,FFW,win,FALSE
+s54-04,2025-07-24,ESEA Season 54 - Intermediate,Getting Good v3,bo1,13,2,de_ancient,win,FALSE
+s54-05,2025-07-29,ESEA Season 54 - Intermediate,Asoka,bo1,13,8,de_inferno,win,FALSE
+s54-06,2025-07-31,ESEA Season 54 - Intermediate,LifeAlertESPORT,bo1,13,8,de_ancient,win,FALSE
+s54-07,2025-08-05,ESEA Season 54 - Intermediate,BucketJonsBoys,bo1,13,4,de_nuke,win,FALSE
+s54-08,2025-08-07,ESEA Season 54 - Intermediate,C0re-Esports,bo1,13,1,de_ancient,win,FALSE
+s54-09,2025-08-12,ESEA Season 54 - Intermediate,Team Xtreme,bo1,7,13,de_ancient,loss,FALSE
+s54-10,2025-08-19,ESEA Season 54 - Intermediate,HongKong2001,bo1,11,13,de_ancient,loss,FALSE
+s54-11,2025-08-20,ESEA Season 54 - Intermediate,Team Serenity,bo1,8,13,de_inferno,loss,FALSE
+s54-12,2025-08-21,ESEA Season 54 - Intermediate,WG Outlaws,bo1,10,13,de_ancient,loss,FALSE
+s54-13,2025-08-26,ESEA Season 54 - Intermediate,Kaos,bo1,7,13,de_inferno,loss,FALSE
+s54-14,2025-08-28,ESEA Season 54 - Intermediate,YungRichHndsome,bo1,11,13,de_dust2,loss,FALSE
+s54-15,2025-09-02,ESEA Season 54 Playoffs - Intermediate,716 BangerZ,bo3,,,,loss,FALSE
+s54-16,2025-09-02,ESEA Season 54 Playoffs - Intermediate,BYE,bo3,1,0,FFW,win,FALSE
+s54-17,2025-09-06,ESEA Season 54 Playoffs - Intermediate,Priority VnD,bo3,,,,loss,FALSE
+s55-01,2025-10-07,ESEA Season 55 - Intermediate,District13,bo1,13,7,de_nuke,win,FALSE
+s55-02,2025-10-09,ESEA Season 55 - Intermediate,Braindead,bo1,11,13,de_ancient,loss,FALSE
+s55-03,2025-10-14,ESEA Season 55 - Intermediate,Chuck E Cheese,bo1,11,13,de_inferno,loss,FALSE
+s55-04,2025-10-16,ESEA Season 55 - Intermediate,dotland,bo1,22,19,de_train,win,FALSE
+s55-05,2025-10-21,ESEA Season 55 - Intermediate,Bingo Club,bo1,13,10,de_ancient,win,FALSE
+s55-06,2025-10-23,ESEA Season 55 - Intermediate,Potential to Stack Dough,bo1,9,13,de_ancient,loss,FALSE
+s55-07,2025-10-28,ESEA Season 55 - Intermediate,2 RAW,bo1,7,13,de_nuke,loss,FALSE
+s55-08,2025-10-30,ESEA Season 55 - Intermediate,FNP Esports,bo1,9,13,de_nuke,loss,FALSE
+s55-09,2025-11-04,ESEA Season 55 - Intermediate,Lemon Party,bo1,3,13,de_mirage,loss,FALSE
+s55-10,2025-11-06,ESEA Season 55 - Intermediate,UNCLES,bo1,13,6,de_ancient,win,FALSE
+s55-11,2025-11-10,ESEA Season 55 - Intermediate,guys i lagged out ,bo1,9,13,de_overpass,loss,FALSE
+s55-12,2025-11-13,ESEA Season 55 - Intermediate,Ablert and Co,bo1,13,5,de_ancient,win,FALSE
+s55-13,2025-11-18,ESEA Season 55 - Intermediate,SuperSoakerClub,bo1,1,0,FFW,win,FALSE
+s55-14,2025-11-20,ESEA Season 55 - Intermediate,MakeYouSayLate,bo1,13,4,de_nuke,win,FALSE
+s55-15,2025-11-25,ESEA Season 55 Playoffs - Intermediate,Diamond Mental,bo3,,,,win,FALSE
+s55-16,2025-11-28,ESEA Season 55 Playoffs - Intermediate,Square1,bo3,,,,loss,FALSE
+s55-17,2025-11-30,ESEA Season 55 Playoffs - Intermediate,dogwater,bo3,,,,win,FALSE
+s55-18,2025-12-04,ESEA Season 55 Playoffs - Intermediate,InfernoPulse,bo3,,,,loss,FALSE
