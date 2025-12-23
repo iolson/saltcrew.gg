@@ -2,72 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getRecapBySlug } from '@/lib/markdown';
-
-interface Match {
-  id: string;
-  date: string;
-  tournament: string;
-  opponent: string;
-  saltcrewScore: number;
-  opponentScore: number;
-  map?: string;
-  result: 'win' | 'loss';
-}
-
-// This would normally come from a database or API
-// For now, we'll use the same data as the matches page
-const matches: Match[] = [
-  {
-    id: '1',
-    date: '2024-12-15',
-    tournament: 'ESEA Season 54',
-    opponent: 'Team Alpha',
-    saltcrewScore: 16,
-    opponentScore: 12,
-    map: 'de_dust2',
-    result: 'win',
-  },
-  {
-    id: '2',
-    date: '2024-12-12',
-    tournament: 'ESEA Season 54',
-    opponent: 'Beta Squad',
-    saltcrewScore: 13,
-    opponentScore: 16,
-    map: 'de_mirage',
-    result: 'loss',
-  },
-  {
-    id: '3',
-    date: '2024-12-08',
-    tournament: 'ESEA Season 54',
-    opponent: 'Gamma Gaming',
-    saltcrewScore: 16,
-    opponentScore: 9,
-    map: 'de_inferno',
-    result: 'win',
-  },
-  {
-    id: '4',
-    date: '2024-12-05',
-    tournament: 'ESEA Season 54',
-    opponent: 'Delta Force',
-    saltcrewScore: 14,
-    opponentScore: 16,
-    map: 'de_nuke',
-    result: 'loss',
-  },
-  {
-    id: '5',
-    date: '2024-12-01',
-    tournament: 'ESEA Season 54',
-    opponent: 'Epsilon Elite',
-    saltcrewScore: 16,
-    opponentScore: 11,
-    map: 'de_ancient',
-    result: 'win',
-  },
-];
+import { matches, getMatchById } from '@/data/matches';
 
 interface MatchPageProps {
   params: Promise<{
@@ -83,17 +18,21 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: MatchPageProps): Promise<Metadata> {
   const { id } = await params;
-  const match = matches.find((m) => m.id === id);
+  const match = getMatchById(id);
 
   if (!match) {
     return {
-      title: 'Match Not Found - Saltcrew',
+      title: 'Result Not Found - Saltcrew',
     };
   }
 
+  const scoreDisplay = match.format === 'bo1'
+    ? `${match.saltcrewScore}-${match.opponentScore}`
+    : match.seriesScore;
+
   return {
-    title: `${match.opponent} (${match.saltcrewScore}-${match.opponentScore}) - Saltcrew`,
-    description: `Match details: Saltcrew vs ${match.opponent} - ${match.result}`,
+    title: `${match.opponent} (${scoreDisplay}) - Saltcrew`,
+    description: `Result: Saltcrew vs ${match.opponent} - ${match.result}`,
   };
 }
 
@@ -104,7 +43,7 @@ function formatDate(dateString: string): string {
 
 export default async function MatchDetailPage({ params }: MatchPageProps) {
   const { id } = await params;
-  const match = matches.find((m) => m.id === id);
+  const match = getMatchById(id);
 
   if (!match) {
     notFound();
@@ -132,7 +71,7 @@ export default async function MatchDetailPage({ params }: MatchPageProps) {
           >
             <path d="M15 19l-7-7 7-7"></path>
           </svg>
-          Back to Matches
+          Back to Results
         </Link>
 
         {/* Match Header */}
@@ -141,9 +80,11 @@ export default async function MatchDetailPage({ params }: MatchPageProps) {
             <div>
               <div className="text-foreground/60 text-sm mb-1">{formatDate(match.date)}</div>
               <div className="text-foreground font-medium">{match.tournament}</div>
-              {match.map && (
-                <div className="text-foreground/60 text-sm mt-1">{match.map}</div>
-              )}
+              <div className="text-foreground/60 text-sm mt-1">
+                {match.format === 'bo1' && match.map}
+                {match.format === 'bo3' && 'Best of 3'}
+                {match.format === 'bo5' && 'Best of 5'}
+              </div>
             </div>
             <div
               className={`px-6 py-3 rounded-full text-lg font-bold uppercase ${
@@ -156,38 +97,75 @@ export default async function MatchDetailPage({ params }: MatchPageProps) {
             </div>
           </div>
 
-          {/* Score Display */}
-          <div className="flex items-center justify-center gap-8 py-8">
-            <div className="text-center">
-              <div className="text-foreground font-bold text-2xl mb-2">Saltcrew</div>
-              <div
-                className={`text-6xl font-bold ${
-                  match.result === 'win' ? 'text-accent' : 'text-foreground'
-                }`}
-              >
-                {match.saltcrewScore}
+          {match.format === 'bo1' ? (
+            /* BO1 Score Display */
+            <div className="flex items-center justify-center gap-8 py-8">
+              <div className="text-center">
+                <div className="text-foreground font-bold text-2xl mb-2">Saltcrew</div>
+                <div
+                  className={`text-6xl font-bold ${
+                    match.result === 'win' ? 'text-accent' : 'text-foreground'
+                  }`}
+                >
+                  {match.saltcrewScore}
+                </div>
+              </div>
+
+              <div className="text-foreground/40 text-4xl">-</div>
+
+              <div className="text-center">
+                <div className="text-foreground font-bold text-2xl mb-2">{match.opponent}</div>
+                <div
+                  className={`text-6xl font-bold ${
+                    match.result === 'loss' ? 'text-accent' : 'text-foreground'
+                  }`}
+                >
+                  {match.opponentScore}
+                </div>
               </div>
             </div>
+          ) : (
+            /* BO3/BO5 Series Display */
+            <div>
+              {/* Series Score */}
+              <div className="py-6 mb-6 border-b border-border">
+                <div className="text-center mb-6">
+                  <div className="text-foreground/60 text-sm uppercase tracking-wider mb-4">Series Score</div>
+                  <div className={`text-6xl font-bold ${match.result === 'win' ? 'text-accent' : 'text-foreground'}`}>
+                    {match.seriesScore}
+                  </div>
+                </div>
+                <div className="flex items-center justify-between max-w-2xl mx-auto">
+                  <div className="text-foreground font-bold text-2xl">Saltcrew</div>
+                  <div className="text-foreground font-bold text-2xl">{match.opponent}</div>
+                </div>
+              </div>
 
-            <div className="text-foreground/40 text-4xl">-</div>
-
-            <div className="text-center">
-              <div className="text-foreground font-bold text-2xl mb-2">{match.opponent}</div>
-              <div
-                className={`text-6xl font-bold ${
-                  match.result === 'loss' ? 'text-accent' : 'text-foreground'
-                }`}
-              >
-                {match.opponentScore}
+              {/* Map Breakdown */}
+              <div className="space-y-3">
+                <h3 className="text-lg font-bold text-accent mb-3">Map Results</h3>
+                {match.maps?.map((mapResult, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center justify-between p-4 bg-background rounded border border-border"
+                  >
+                    <div className="text-foreground/80 font-medium">{mapResult.map}</div>
+                    <div className="flex items-center gap-4">
+                      <div className="text-foreground font-bold">{mapResult.saltcrewScore}</div>
+                      <div className="text-foreground/40">-</div>
+                      <div className="text-foreground font-bold">{mapResult.opponentScore}</div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
-          </div>
+          )}
         </div>
 
         {/* Match Recap */}
         {recap ? (
           <div className="bg-card border border-border rounded-lg p-8">
-            <h2 className="text-3xl font-bold text-accent mb-6">Match Recap</h2>
+            <h2 className="text-3xl font-bold text-accent mb-6">Recap</h2>
             <article className="prose prose-invert prose-lg max-w-none">
               <div
                 className="text-foreground/90 leading-relaxed"
@@ -203,7 +181,7 @@ export default async function MatchDetailPage({ params }: MatchPageProps) {
           <div className="bg-card border border-border rounded-lg p-12 text-center">
             <div className="text-4xl mb-4">📝</div>
             <p className="text-foreground/60">
-              No detailed recap available for this match yet.
+              No detailed recap available yet.
             </p>
           </div>
         )}
@@ -214,7 +192,7 @@ export default async function MatchDetailPage({ params }: MatchPageProps) {
             href="/matches"
             className="inline-flex items-center justify-center w-full md:w-auto px-8 py-3 bg-accent hover:bg-accent-hover text-white font-bold rounded-lg transition-colors"
           >
-            View All Matches
+            View All Results
           </Link>
         </div>
       </div>

@@ -4,10 +4,18 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
-const navItems = [
+interface NavItem {
+  href: string;
+  label: string;
+  external?: boolean;
+}
+
+const navItems: NavItem[] = [
   { href: '/', label: 'HOME' },
   { href: '/team', label: 'TEAM' },
-  { href: '/matches', label: 'MATCHES' },
+  { href: '/matches', label: 'RESULTS' },
+  { href: '/partners', label: 'PARTNERS' },
+  { href: 'https://arma.gg/collections/saltcrew', label: 'SHOP', external: true },
 ];
 
 export default function Navigation() {
@@ -33,6 +41,21 @@ export default function Navigation() {
           <div className="hidden md:flex space-x-8">
             {navItems.map((item) => {
               const isActive = pathname === item.href;
+
+              if (item.external) {
+                return (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm font-bold tracking-wider transition-colors hover:text-accent text-foreground"
+                  >
+                    {item.label}
+                  </a>
+                );
+              }
+
               return (
                 <Link
                   key={item.href}

@@ -1,89 +1,18 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { matches, formatDate } from '@/data/matches';
 
 export const metadata: Metadata = {
-  title: 'Match Results - Saltcrew',
-  description: 'View Saltcrew match results and performance history',
+  title: 'Results - Saltcrew',
+  description: 'View Saltcrew results and performance history',
 };
 
-interface Match {
-  id: string;
-  date: string;
-  tournament: string;
-  opponent: string;
-  opponentLogo?: string;
-  saltcrewScore: number;
-  opponentScore: number;
-  map?: string;
-  result: 'win' | 'loss';
-  hasRecap?: boolean;
-}
-
-// Sample matches - replace with your actual data
-const matches: Match[] = [
-  {
-    id: '1',
-    date: '2024-12-15',
-    tournament: 'ESEA Season 54',
-    opponent: 'Team Alpha',
-    saltcrewScore: 16,
-    opponentScore: 12,
-    map: 'de_dust2',
-    result: 'win',
-    hasRecap: true,
-  },
-  {
-    id: '2',
-    date: '2024-12-12',
-    tournament: 'ESEA Season 54',
-    opponent: 'Beta Squad',
-    saltcrewScore: 13,
-    opponentScore: 16,
-    map: 'de_mirage',
-    result: 'loss',
-    hasRecap: true,
-  },
-  {
-    id: '3',
-    date: '2024-12-08',
-    tournament: 'ESEA Season 54',
-    opponent: 'Gamma Gaming',
-    saltcrewScore: 16,
-    opponentScore: 9,
-    map: 'de_inferno',
-    result: 'win',
-    hasRecap: false,
-  },
-  {
-    id: '4',
-    date: '2024-12-05',
-    tournament: 'ESEA Season 54',
-    opponent: 'Delta Force',
-    saltcrewScore: 14,
-    opponentScore: 16,
-    map: 'de_nuke',
-    result: 'loss',
-    hasRecap: false,
-  },
-  {
-    id: '5',
-    date: '2024-12-01',
-    tournament: 'ESEA Season 54',
-    opponent: 'Epsilon Elite',
-    saltcrewScore: 16,
-    opponentScore: 11,
-    map: 'de_ancient',
-    result: 'win',
-    hasRecap: false,
-  },
-];
-
-function formatDate(dateString: string): string {
-  const date = new Date(dateString);
-  return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-}
-
 export default function MatchesPage() {
+  // Sort matches by date (newest first)
+  const sortedMatches = [...matches].sort((a, b) => {
+    return new Date(b.date).getTime() - new Date(a.date).getTime();
+  });
+
   const wins = matches.filter(m => m.result === 'win').length;
   const losses = matches.filter(m => m.result === 'loss').length;
   const winRate = matches.length > 0 ? ((wins / matches.length) * 100).toFixed(1) : '0.0';
@@ -93,10 +22,10 @@ export default function MatchesPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <h1 className="text-5xl md:text-6xl font-bold text-accent mb-4 uppercase">Matches & Results</h1>
+          <h1 className="text-5xl md:text-6xl font-bold text-accent mb-4 uppercase">Results</h1>
           <div className="w-24 h-1 bg-accent mx-auto mb-6"></div>
           <p className="text-xl text-foreground/80 max-w-2xl mx-auto">
-            Track our journey through ESEA competition
+            Track our journey
           </p>
         </div>
 
@@ -118,7 +47,7 @@ export default function MatchesPage() {
 
         {/* Matches List */}
         <div className="space-y-4">
-          {matches.map((match) => (
+          {sortedMatches.map((match) => (
             <div
               key={match.id}
               className={`bg-card border rounded-lg overflow-hidden transition-all hover:shadow-lg ${
@@ -133,9 +62,11 @@ export default function MatchesPage() {
                   <div className="flex-shrink-0">
                     <div className="text-foreground/60 text-sm mb-1">{formatDate(match.date)}</div>
                     <div className="text-foreground font-medium">{match.tournament}</div>
-                    {match.map && (
-                      <div className="text-foreground/60 text-sm mt-1">{match.map}</div>
-                    )}
+                    <div className="text-foreground/60 text-sm mt-1">
+                      {match.format === 'bo1' && match.map && match.map}
+                      {match.format === 'bo3' && 'Best of 3'}
+                      {match.format === 'bo5' && 'Best of 5'}
+                    </div>
                   </div>
 
                   {/* Center: Match Result */}
@@ -145,21 +76,33 @@ export default function MatchesPage() {
                     </div>
 
                     <div className="flex items-center gap-4">
-                      <div
-                        className={`text-3xl font-bold ${
-                          match.result === 'win' ? 'text-accent' : 'text-foreground'
-                        }`}
-                      >
-                        {match.saltcrewScore}
-                      </div>
-                      <div className="text-foreground/40 text-xl">:</div>
-                      <div
-                        className={`text-3xl font-bold ${
-                          match.result === 'loss' ? 'text-accent' : 'text-foreground'
-                        }`}
-                      >
-                        {match.opponentScore}
-                      </div>
+                      {match.format === 'bo1' ? (
+                        <>
+                          <div
+                            className={`text-3xl font-bold ${
+                              match.result === 'win' ? 'text-accent' : 'text-foreground'
+                            }`}
+                          >
+                            {match.saltcrewScore}
+                          </div>
+                          <div className="text-foreground/40 text-xl">:</div>
+                          <div
+                            className={`text-3xl font-bold ${
+                              match.result === 'loss' ? 'text-accent' : 'text-foreground'
+                            }`}
+                          >
+                            {match.opponentScore}
+                          </div>
+                        </>
+                      ) : (
+                        <div
+                          className={`text-3xl font-bold ${
+                            match.result === 'win' ? 'text-accent' : 'text-foreground'
+                          }`}
+                        >
+                          {match.seriesScore}
+                        </div>
+                      )}
                     </div>
 
                     <div className="text-left">
@@ -195,7 +138,7 @@ export default function MatchesPage() {
         {/* Empty State */}
         {matches.length === 0 && (
           <div className="text-center py-20">
-            <p className="text-foreground/60 text-lg">No matches recorded yet. Check back soon!</p>
+            <p className="text-foreground/60 text-lg">No results recorded yet. Check back soon!</p>
           </div>
         )}
       </div>

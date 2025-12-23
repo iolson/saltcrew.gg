@@ -17,7 +17,7 @@ export default function Home() {
               WELCOME TO <span className="text-accent">SALTCREW</span>
             </h1>
             <p className="text-xl md:text-2xl text-foreground/80 mb-8 max-w-3xl mx-auto">
-              North American Counter-Strike team competing in ESEA leagues
+              North American Counter-Strike team
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
@@ -30,34 +30,8 @@ export default function Home() {
                 href="/matches"
                 className="px-8 py-4 border-2 border-accent text-accent hover:bg-accent hover:text-white font-bold rounded-lg transition-colors uppercase tracking-wider"
               >
-                View Matches
+                View Results
               </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Team Goals Section */}
-      <section className="py-20 bg-card">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-accent mb-4 uppercase">Our Goals</h2>
-            <div className="w-24 h-1 bg-accent mx-auto"></div>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="bg-background p-8 rounded-lg border border-border">
-              <h3 className="text-2xl font-bold text-foreground mb-4">Current Season</h3>
-              <p className="text-foreground/80 text-lg">
-                Reach <span className="text-accent font-bold">Intermediate Playoffs</span> in ESEA competition
-              </p>
-            </div>
-
-            <div className="bg-background p-8 rounded-lg border border-border">
-              <h3 className="text-2xl font-bold text-foreground mb-4">Ultimate Goal</h3>
-              <p className="text-foreground/80 text-lg">
-                Progress to <span className="text-accent font-bold">Main Division</span> in the next season
-              </p>
             </div>
           </div>
         </div>
@@ -72,20 +46,6 @@ export default function Home() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-            {/* Recent Match */}
-            <Link href="/matches" className="group bg-card rounded-lg overflow-hidden border border-border hover:border-accent transition-colors">
-              <div className="h-48 bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center">
-                <span className="text-6xl">🎮</span>
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-accent transition-colors">
-                  Match Results
-                </h3>
-                <p className="text-foreground/70">
-                  Check out our latest match results and standings
-                </p>
-              </div>
-            </Link>
 
             {/* Team Roster */}
             <Link href="/team" className="group bg-card rounded-lg overflow-hidden border border-border hover:border-accent transition-colors">
@@ -98,6 +58,21 @@ export default function Home() {
                 </h3>
                 <p className="text-foreground/70">
                   Meet the players making it happen
+                </p>
+              </div>
+            </Link>
+            
+            {/* Results */}
+            <Link href="/matches" className="group bg-card rounded-lg overflow-hidden border border-border hover:border-accent transition-colors">
+              <div className="h-48 bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center">
+                <span className="text-6xl">🎮</span>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-accent transition-colors">
+                  Results
+                </h3>
+                <p className="text-foreground/70">
+                  Check out our latest results and standings
                 </p>
               </div>
             </Link>

@@ -27,20 +27,27 @@ This is a modern, responsive website for SaltcrewGG, a North American Counter-St
 │   ├── favicon.ico        # Site favicon
 │   ├── team/              # Team roster section
 │   │   └── page.tsx       # Player cards with stats links
-│   └── matches/           # Matches section
-│       ├── page.tsx       # Match history list
-│       └── [id]/          # Dynamic match detail pages
-│           └── page.tsx   # Individual match with recap
+│   ├── matches/           # Matches section
+│   │   ├── page.tsx       # Match history list
+│   │   └── [id]/          # Dynamic match detail pages
+│   │       └── page.tsx   # Individual match with recap
+│   └── partners/          # Partners/Sponsors page
+│       └── page.tsx       # Partner logos and information
 ├── components/            # Reusable React components
 │   ├── Navigation.tsx     # Site navigation header
 │   └── Footer.tsx         # Site footer
+├── data/                  # Centralized data files (★ UPDATE THESE TO MANAGE CONTENT)
+│   ├── matches.ts         # Match data (scores, opponents, results)
+│   ├── players.ts         # Player roster data
+│   └── README.md          # Guide for managing data files
 ├── content/               # Content files
 │   └── recaps/           # Markdown match recaps (named by match ID)
 ├── lib/                   # Utility functions
 │   └── markdown.ts       # Markdown processing utilities
 ├── public/               # Static assets
 │   └── images/           # Images and logos
-│       └── players/      # Player photos (optional)
+│       ├── players/      # Player photos
+│       └── partners/     # Partner/sponsor logos
 ├── package.json          # Dependencies and scripts
 ├── tsconfig.json         # TypeScript configuration
 ├── next.config.ts        # Next.js configuration
@@ -96,24 +103,32 @@ Edit `app/globals.css` to customize theme colors:
 
 ## Content Management
 
+**IMPORTANT**: All content is managed through centralized data files in the `/data` directory. See `/data/README.md` for detailed instructions.
+
 ### Adding Matches
 
-Matches are currently hardcoded in two locations (this should eventually be moved to a database):
+Edit `/data/matches.ts` and add a new object to the `matches` array:
 
-1. **Match List**: Edit `app/matches/page.tsx` - add to the `matches` array
-2. **Match Details**: Edit `app/matches/[id]/page.tsx` - add to the `matches` array there
+```typescript
+{
+  id: '6',                          // Unique ID (increment from last)
+  date: '2024-12-20',              // Match date (YYYY-MM-DD)
+  tournament: 'ESEA Season 54',    // Tournament name
+  opponent: 'Team Name',           // Opponent team name
+  saltcrewScore: 16,               // Saltcrew's score
+  opponentScore: 13,               // Opponent's score
+  map: 'de_dust2',                 // Map name (optional)
+  result: 'win',                   // 'win' or 'loss'
+  hasRecap: true,                  // true if you have a recap markdown file
+}
+```
 
-Each match should have:
-- `id`: Unique identifier (string)
-- `date`: Match date
-- `opponent`: Opponent team name
-- `result`: "win" or "loss"
-- `score`: Final score (e.g., "16-13")
-- `map`: Map name (e.g., "de_dust2")
+**Benefits**: Changes appear automatically on both the matches list page and detail pages.
 
 ### Adding Match Recaps
 
-Create markdown files in `content/recaps/` named `{match-id}.md`:
+1. Add match data to `/data/matches.ts` with `hasRecap: true`
+2. Create a markdown file in `content/recaps/` named `{match-id}.md`:
 
 ```markdown
 ---
@@ -133,22 +148,40 @@ The recap will automatically appear on the individual match page at `/matches/{i
 
 ### Updating Team Roster
 
-Edit the `players` array in `app/team/page.tsx`:
+Edit `/data/players.ts` and add/edit player objects:
 
 ```typescript
 {
-  name: 'PlayerName',
-  role: 'Player',
-  steamId: '76561197971721260',
-  image: '/images/players/playername.jpg',  // Optional
-  season53Stats: 'https://csstats.gg/...',
-  season54Stats: 'https://csstats.gg/...',
+  name: 'PlayerName',                                    // Display name
+  role: 'Player',                                        // Role (Player, Captain & IGL, etc.)
+  steamId: '76561197971721260',                         // Steam ID
+  image: '/images/players/playername.png',              // Path to player image (optional)
+  statsUrl: 'https://csstats.gg/player/76561197971721260', // Stats page URL (CS Stats or Leadify)
 }
 ```
 
+**Benefits**: Single source of truth - edit once, updates everywhere.
+
 ### Adding Player Photos
 
-See `HOW_TO_ADD_IMAGES.md` for detailed instructions on adding player photos to `public/images/players/`
+1. Add player image to `public/images/players/`
+2. Update the player's `image` field in `/data/players.ts`
+3. Use `/images/players/nopicture.png` as fallback for players without photos
+
+### Adding Partners/Sponsors
+
+Edit `/app/partners/page.tsx` and add partner objects to the `partners` array:
+
+```typescript
+{
+  name: 'Partner Name',
+  logo: '/images/partners/partner-logo.png',
+  url: 'https://partner-website.com',
+  description: 'Brief description of the partnership',
+}
+```
+
+Add partner logos to `public/images/partners/`
 
 ## Deployment
 
@@ -196,9 +229,12 @@ Edit `components/Navigation.tsx` to update navigation links and structure
 
 ## Important Files
 
+- `data/matches.ts` - **Match data (edit here to add/update matches)**
+- `data/players.ts` - **Player roster data (edit here to manage team)**
+- `data/README.md` - Detailed guide for managing data files
 - `app/layout.tsx` - Root layout wrapper for all pages
 - `app/globals.css` - Global styles and CSS variables
-- `components/Navigation.tsx` - Site navigation
+- `components/Navigation.tsx` - Site navigation (includes Shop link to Arma.gg)
 - `lib/markdown.ts` - Markdown processing utilities for recaps
 - `next.config.ts` - Next.js configuration
 - `tsconfig.json` - TypeScript configuration
@@ -207,5 +243,7 @@ Edit `components/Navigation.tsx` to update navigation links and structure
 
 - The `.next/` directory is auto-generated build output (gitignored)
 - `node_modules/` contains dependencies (gitignored)
-- Match data is currently hardcoded but should eventually use a database
-- Player photos are optional - cards display without them gracefully
+- **All match and player data is centralized in `/data` directory** - single source of truth
+- Data files use TypeScript for type safety and better developer experience
+- Player photos are optional - cards display placeholder when image is not provided
+- Shop link in navigation points to https://arma.gg/collections/saltcrew (external)
