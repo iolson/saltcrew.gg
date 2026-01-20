@@ -80,7 +80,7 @@ export default function MatchesPage() {
                         <>
                           <div
                             className={`text-3xl font-bold ${
-                              match.result === 'win' ? 'text-accent' : 'text-foreground'
+                              match.result === 'win' ? 'text-green-500' : 'text-foreground'
                             }`}
                           >
                             {match.saltcrewScore}
@@ -88,7 +88,7 @@ export default function MatchesPage() {
                           <div className="text-foreground/40 text-xl">:</div>
                           <div
                             className={`text-3xl font-bold ${
-                              match.result === 'loss' ? 'text-accent' : 'text-foreground'
+                              match.result === 'loss' ? 'text-red-500' : 'text-foreground'
                             }`}
                           >
                             {match.opponentScore}
@@ -97,7 +97,7 @@ export default function MatchesPage() {
                       ) : (
                         <div
                           className={`text-3xl font-bold ${
-                            match.result === 'win' ? 'text-accent' : 'text-foreground'
+                            match.result === 'win' ? 'text-green-500' : 'text-red-500'
                           }`}
                         >
                           {match.seriesScore}
@@ -115,8 +115,8 @@ export default function MatchesPage() {
                     <div
                       className={`px-4 py-2 rounded-full text-sm font-bold uppercase ${
                         match.result === 'win'
-                          ? 'bg-accent/20 text-accent'
-                          : 'bg-foreground/10 text-foreground/60'
+                          ? 'bg-green-500/20 text-green-500'
+                          : 'bg-red-500/20 text-red-500'
                       }`}
                     >
                       {match.result}
