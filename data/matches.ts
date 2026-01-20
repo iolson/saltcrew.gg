@@ -1708,7 +1708,7 @@ export const matches: Match[] = [
     saltcrewScore: 16,
     opponentScore: 14,
     map: 'de_nuke',
-    hasRecap: false,
+    hasRecap: true,
     vodUrl: 'https://www.youtube.com/watch?v=d37iHDW6chA',
   }
 ];
