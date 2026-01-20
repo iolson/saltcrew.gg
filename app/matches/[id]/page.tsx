@@ -41,6 +41,11 @@ function formatDate(dateString: string): string {
   return date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
 }
 
+function getYouTubeVideoId(url: string): string | null {
+  const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\s]+)/);
+  return match ? match[1] : null;
+}
+
 export default async function MatchDetailPage({ params }: MatchPageProps) {
   const { id } = await params;
   const match = getMatchById(id);
@@ -51,6 +56,9 @@ export default async function MatchDetailPage({ params }: MatchPageProps) {
 
   // Try to load a recap for this match
   const recap = await getRecapBySlug(id);
+
+  // Get YouTube video ID if VOD URL exists
+  const youtubeVideoId = match.vodUrl ? getYouTubeVideoId(match.vodUrl) : null;
 
   return (
     <div className="py-20">
@@ -161,6 +169,22 @@ export default async function MatchDetailPage({ params }: MatchPageProps) {
             </div>
           )}
         </div>
+
+        {/* VOD Embed */}
+        {youtubeVideoId && (
+          <div className="bg-card border border-border rounded-lg p-8 mb-8">
+            <h2 className="text-3xl font-bold text-accent mb-6">Watch VOD</h2>
+            <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+              <iframe
+                className="absolute top-0 left-0 w-full h-full rounded-lg"
+                src={`https://www.youtube.com/embed/${youtubeVideoId}`}
+                title="Match VOD"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          </div>
+        )}
 
         {/* Match Recap */}
         {recap ? (

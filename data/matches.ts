@@ -13,6 +13,7 @@ export interface Match {
   format: 'bo1' | 'bo3' | 'bo5';  // Best of 1, 3, or 5
   result: 'win' | 'loss';
   hasRecap?: boolean;
+  vodUrl?: string;  // YouTube VOD URL
 
   // For BO1 matches (single map)
   saltcrewScore?: number;
@@ -1695,6 +1696,7 @@ export const matches: Match[] = [
     opponentScore: 13,
     map: 'de_ancient',
     hasRecap: false,
+    vodUrl: 'https://www.youtube.com/watch?v=oimWXWKzUnc',
   },
   {
     id: 's56-02',
@@ -1707,6 +1709,7 @@ export const matches: Match[] = [
     opponentScore: 14,
     map: 'de_nuke',
     hasRecap: false,
+    vodUrl: 'https://www.youtube.com/watch?v=d37iHDW6chA',
   }
 ];
 
