@@ -190,16 +190,10 @@ export default async function MatchDetailPage({ params }: MatchPageProps) {
         {recap ? (
           <div className="bg-card border border-border rounded-lg p-8">
             <h2 className="text-3xl font-bold text-accent mb-6">Recap</h2>
-            <article className="prose prose-invert prose-lg max-w-none">
-              <div
-                className="text-foreground/90 leading-relaxed"
-                dangerouslySetInnerHTML={{ __html: recap.content }}
-                style={{
-                  fontSize: '1.125rem',
-                  lineHeight: '1.75',
-                }}
-              />
-            </article>
+            <article
+              className="prose prose-invert prose-lg max-w-none prose-headings:text-accent prose-h1:text-2xl prose-h2:text-xl prose-h2:mt-8 prose-h2:mb-4 prose-h3:text-lg prose-h3:mt-6 prose-h3:mb-3 prose-p:text-foreground/90 prose-p:mb-4 prose-strong:text-foreground prose-ul:text-foreground/90 prose-li:text-foreground/90"
+              dangerouslySetInnerHTML={{ __html: recap.content }}
+            />
           </div>
         ) : (
           <div className="bg-card border border-border rounded-lg p-12 text-center">
