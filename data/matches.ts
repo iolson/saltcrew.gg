@@ -1683,6 +1683,30 @@ export const matches: Match[] = [
       { map: 'de_mirage', saltcrewScore: 2, opponentScore: 13 },
     ],
     hasRecap: false,
+  },
+  {
+    id: 's56-01',
+    date: '2026-01-13',
+    tournament: 'ESEA Season 56 - Intermediate',
+    opponent: 'CHAOZ Esports',
+    format: 'bo1',
+    result: 'loss',
+    saltcrewScore: 6,
+    opponentScore: 13,
+    map: 'de_ancient',
+    hasRecap: false,
+  },
+  {
+    id: 's56-02',
+    date: '2026-01-15',
+    tournament: 'ESEA Season 56 - Intermediate',
+    opponent: 'Square1',
+    format: 'bo1',
+    result: 'win',
+    saltcrewScore: 16,
+    opponentScore: 14,
+    map: 'de_nuke',
+    hasRecap: false,
   }
 ];
 
