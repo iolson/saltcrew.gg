@@ -1710,6 +1710,30 @@ export const matches: Match[] = [
     map: 'de_nuke',
     hasRecap: true,
     vodUrl: 'https://www.youtube.com/watch?v=d37iHDW6chA',
+  },
+  {
+    id: 's56-03',
+    date: '2026-01-20',
+    tournament: 'ESEA Season 56 - Intermediate',
+    opponent: 'SwayMonkeyHats',
+    format: 'bo1',
+    result: 'loss',
+    saltcrewScore: 9,
+    opponentScore: 13,
+    map: 'de_ancient',
+    hasRecap: false
+  },
+  {
+    id: 's56-04',
+    date: '2026-01-20',
+    tournament: 'ESEA Season 56 - Intermediate',
+    opponent: 'Team Ratio',
+    format: 'bo1',
+    result: 'win',
+    saltcrewScore: 13,
+    opponentScore: 7,
+    map: 'de_anubis',
+    hasRecap: false
   }
 ];
 
