@@ -8,9 +8,14 @@ export const metadata: Metadata = {
 };
 
 export default function MatchesPage() {
-  // Sort matches by date (newest first)
+  // Sort matches by date (newest first), with ID as tiebreaker
   const sortedMatches = [...matches].sort((a, b) => {
-    return new Date(b.date).getTime() - new Date(a.date).getTime();
+    const dateComparison = new Date(b.date).getTime() - new Date(a.date).getTime();
+    if (dateComparison !== 0) {
+      return dateComparison;
+    }
+    // If dates are equal, sort by ID (assuming IDs are chronological)
+    return b.id.localeCompare(a.id);
   });
 
   const wins = matches.filter(m => m.result === 'win').length;
