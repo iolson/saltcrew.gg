@@ -1734,6 +1734,44 @@ export const matches: Match[] = [
     opponentScore: 7,
     map: 'de_anubis',
     hasRecap: false
+  },
+  {
+    id: 's56-05',
+    date: '2026-01-27',
+    tournament: 'ESEA Season 56 - Intermediate',
+    opponent: 'XGeN',
+    format: 'bo1',
+    result: 'loss',
+    saltcrewScore: 4,
+    opponentScore: 13,
+    map: 'de_ancient',
+    hasRecap: false
+  },
+  {
+    id: 's56-06',
+    date: '2026-01-28',
+    tournament: 'ESEA Season 56 - Intermediate',
+    opponent: 'Surely',
+    format: 'bo1',
+    result: 'win',
+    saltcrewScore: 1,
+    opponentScore: 0,
+    map: 'FFW',
+    hasRecap: false,
+    vodUrl: 'https://youtu.be/Tx8IXz57DoU'
+  },
+  {
+    id: 's56-07',
+    date: '2026-02-03',
+    tournament: 'ESEA Season 56 - Intermediate',
+    opponent: 'JiggarPEEK',
+    format: 'bo1',
+    result: 'win',
+    saltcrewScore: 13,
+    opponentScore: 10,
+    map: 'de_anubis',
+    hasRecap: false,
+    vodUrl: 'https://youtu.be/lwMtYdwTWUw'
   }
 ];
 
