@@ -27,6 +27,18 @@ export interface Match {
 
 export const matches: Match[] = [
   {
+    id: 's56-09',
+    date: '2026-02-04',
+    tournament: 'ESEA Season 56 - Intermediate',
+    opponent: 'JiggarPEEK',
+    format: 'bo1',
+    result: 'win',
+    saltcrewScore: 13,
+    opponentScore: 10,
+    map: 'de_anubis',
+    hasRecap: false,
+  },
+  {
     id: 's48-01',
     date: '2024-01-15',
     tournament: 'ESEA Season 48 - Open',
