@@ -1772,6 +1772,18 @@ export const matches: Match[] = [
     map: 'de_anubis',
     hasRecap: false,
     vodUrl: 'https://youtu.be/lwMtYdwTWUw'
+  },
+  {
+    id: 's56-08',
+    date: '2026-02-06',
+    tournament: 'ESEA Season 56 - Intermediate',
+    opponent: 'GARAZH CLAN',
+    format: 'bo1',
+    result: 'loss',
+    saltcrewScore: 7,
+    opponentScore: 13,
+    map: 'de_inferno',
+    hasRecap: false,
   }
 ];
 
