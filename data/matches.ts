@@ -27,6 +27,35 @@ export interface Match {
 
 export const matches: Match[] = [
   {
+    id: 's0-01',
+    date: '2026-02-06',
+    tournament: 'S56 NA Intermediate Central - Regular Season',
+    opponent: 'GARAZH CLAN',
+    format: 'bo1',
+    result: 'loss',
+    saltcrewScore: 7,
+    opponentScore: 13,
+    map: 'de_inferno',
+    hasRecap: false,
+  },
+  {
+    id: 's0-01',
+    date: '2026-02-04',
+    tournament: 'S56 NA Intermediate Central - Regular Season',
+    opponent: 'JiggarPEEK',
+    format: 'bo1',
+    result: 'win',
+    saltcrewScore: 13,
+    opponentScore: 10,
+    map: 'de_anubis',
+    hasRecap: false,
+  },
+];
+  seriesScore?: string;  // e.g., "2-1" for winning 2 maps out of 3
+}
+
+export const matches: Match[] = [
+  {
     id: 's48-01',
     date: '2024-01-15',
     tournament: 'ESEA Season 48 - Open',
