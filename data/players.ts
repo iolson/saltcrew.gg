@@ -10,10 +10,17 @@ export interface Player {
 export const players: Player[] = [
   {
     name: 'FuzzyHat',
-    role: 'Captain & IGL',
+    role: 'Captain',
     steamId: '76561197971721260',
     image: '/images/players/fuzzyhat.png',
     statsUrl: 'https://csstats.gg/player/76561197971721260',
+  },
+  {
+    name: 'deviN.',
+    role: 'IGL',
+    steamId: '76561197962762372',
+    image: '/images/players/nopicture.png',
+    statsUrl: 'https://csstats.gg/player/76561197962762372',
   },
   {
     name: 'GUNK',
